@@ -16,6 +16,11 @@ function Auth(state = INITIAL_STATE, action) {
         ...state,
         isAuthenticated: action.payload,
       };
+    case types.HANDLE_LANGUAGE_CHANGE:
+      return {
+        ...state,
+        selectLanguage: action.payload,
+      };
     default:
       return state;
   }

@@ -6,17 +6,17 @@ import CommonButton from "../common/CommonButton";
 import MovieCard from "../common/MovieCard";
 import ReactPlayer from "react-player";
 import SimpleSnackbar from "../common/SnackBar";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   screenShopGap: {
     padding: "5px",
   },
   title: {
-    color: "#000080",
+    color: theme.palette.primary.main,
   },
   castGap: {
     padding: "5px",
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
     color: "blue",
     textDecoration: "underline",
   },
-});
+}));
 
 function MovieDetail() {
   const classes = useStyles();

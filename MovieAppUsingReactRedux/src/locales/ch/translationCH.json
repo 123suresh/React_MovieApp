@@ -2,5 +2,7 @@
     "login":"登录",
     "email":"电子邮件",
     "password":"密码",
-    "newAccount":"建立新帐户"
+    "newAccount":"建立新帐户",
+    "selectLang":"选择语言",
+    "selectedLang":"中国人"
 }

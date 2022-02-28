@@ -1,8 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CommonButton from "../common/CommonButton";
 import InputField from "../common/InputField";
-import "./Login.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { auth } from "../../action/auth";
@@ -13,8 +12,9 @@ import { makeStyles } from "@material-ui/core";
 import { useTranslation } from "react-i18next";
 import { handleChangeLanguage } from "../../action/movie";
 import SelectTextFields from "../common/Select";
+import i18n from "../../i18n";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   inputFieldErr: {
     color: "red",
     marginTop: "-8px",
@@ -22,31 +22,48 @@ const useStyles = makeStyles({
   },
   login__button: {
     textAlign: "center",
-    marginLeft: "10px",
+    marginLeft: "15px",
   },
   login__main: {
-    width: "400px",
+    width: "380px",
     margin: "auto",
-    marginTop: "80px",
+    marginTop: "40px",
     boxSizing: "border-box",
     boxShadow:
       "rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px",
-    height: "340px",
+    height: "320px",
+    backgroundColor: "#F0FFFF",
+    [theme.breakpoints.down("xs")]: {
+      width: "320px",
+    },
   },
-});
+  validation__text: {
+    color: "red",
+    textAlign: "center",
+  },
+  login__box: {
+    padding: "10px",
+    // backgroundColor: "white",
+  },
+  login__header: {
+    textAlign: "center",
+    marginTop: "12px",
+  },
+  login__label: {
+    marginRight: "20px",
+  },
+}));
 
 function Login() {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const selectedLanguage = useSelector((state) => state.info.selectLanguage);
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
 
-  // const [language, setLanguage] = React.useState("");
-
-  // const handleLanguageChange = (e) => {
-  //   setLanguage(e.target.value);
-  //   // dispatch(handleChangeLanguage(language));
-  // };
+  useEffect(() => {
+    i18n.changeLanguage(selectedLanguage);
+  }, [selectedLanguage]);
 
   const formik = useFormik({
     initialValues: {
@@ -77,13 +94,13 @@ function Login() {
   if (isAuthenticated) return <Navigate to="/movieList" />;
   return (
     <div>
-      <SelectTextFields />
+      <SelectTextFields selectLabel={t("selectLang")} />
       <div className={classes.login__main}>
-        <div className="login__box">
-          <div className="login__header">
+        <div className={classes.login__box}>
+          <div className={classes.login__header}>
             <Typography variant="h5">{t("login")}</Typography>
           </div>
-          <div className="login__label">
+          <div className={classes.login__label}>
             <Box
               component="form"
               sx={{
@@ -140,8 +157,8 @@ function Login() {
                 <hr />
                 <CommonButton buttonName={t("newAccount")} color="success" />
               </div>
-              <div className="validation__text">
-                {err ? <p>Invalid email or Password</p> : null}
+              <div className={classes.validation__text}>
+                {err ? <p>Invalid Email or Password</p> : null}
               </div>
             </Box>
           </div>

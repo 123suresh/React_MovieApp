@@ -2,5 +2,7 @@
     "login":"Anmeldung",
     "email":"Email",
     "password":"Passwort",
-    "newAccount":"neuen Account erstellen"
+    "newAccount":"neuen Account erstellen",
+    "selectLang":"Sprache auswählen",
+    "selectedLang":"Deutsch"
 }

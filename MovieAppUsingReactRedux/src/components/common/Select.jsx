@@ -1,8 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { useDispatch } from "react-redux";
-import i18n from "../../i18n";
+import { useDispatch, useSelector } from "react-redux";
+import { handleChangeLanguage } from "../../action/movie";
+// import i18n from "../../i18n";
 
 const languages = [
   {
@@ -11,26 +12,30 @@ const languages = [
   },
   {
     value: "hindi",
-    label: "Hindi",
+    label: "हिन्दी",
   },
   {
     value: "germany",
-    label: "Germany",
+    label: "Deutsch",
   },
   {
     value: "chinese",
-    label: "Chinese",
+    label: "中国人",
   },
 ];
 
-export default function SelectTextFields() {
+export default function SelectTextFields({ selectLabel }) {
   const [language, setLanguage] = React.useState("english");
 
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    i18n.changeLanguage(language);
+    dispatch(handleChangeLanguage(language));
   }, [language]);
+
+  // React.useEffect(() => {
+  //   i18n.changeLanguage(language);
+  // }, [language]);
 
   return (
     <Box
@@ -45,7 +50,7 @@ export default function SelectTextFields() {
         <TextField
           id="standard-select-currency-native"
           select
-          label="Select Language"
+          label={selectLabel}
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
           SelectProps={{

@@ -8,12 +8,12 @@ import SimpleSnackbar from "../common/SnackBar";
 import { makeStyles } from "@material-ui/core";
 import { Box } from "@mui/system";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
-    color: "#000080",
     marginTop: "10px",
+    color: theme.palette.primary.main,
   },
-});
+}));
 
 function WatchList() {
   const classes = useStyles();
@@ -36,7 +36,7 @@ function WatchList() {
       <Typography className={classes.title} variant="h4">
         Watch List
       </Typography>
-      <Grid container justifyContent="space-between" spacing={4}>
+      <Grid container spacing={4}>
         {watchLists.map(({ src, title, id }) => (
           <Grid item sx={{ padding: "20px" }} lg={3} key={id}>
             <Paper

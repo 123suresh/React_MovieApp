@@ -2,5 +2,7 @@
     "login":"लॉग इन करें",
     "email":"ईमेल",
     "password":"पासवर्ड",
-    "newAccount":"नया खाता बनाएँ"
+    "newAccount":"नया खाता बनाएँ",
+    "selectLang":"भाषा का चयन करें",
+    "selectedLang":"हिन्दी"
 }

@@ -2,5 +2,7 @@
     "login":"LOGIN",
     "email":"Email",
     "password":"Password",
-    "newAccount":"Create New Account"
+    "newAccount":"Create New Account",
+    "selectLang":"Select Language",
+    "selectedLang":"English"
 }

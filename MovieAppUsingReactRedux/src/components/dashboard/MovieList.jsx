@@ -11,11 +11,20 @@ import Box from "@mui/material/Box";
 import { Container, Paper } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
-    color: "#000080",
+    color: theme.palette.primary.main,
   },
-});
+  cardStyle: {
+    // marginLeft: "78px",
+    boxSizing: "border-box",
+  },
+  paper: {
+    alignItems: "center",
+    // marginLeft: "50px",
+    // marginRight: "50px",
+  },
+}));
 
 function MovieList() {
   const classes = useStyles();
@@ -49,7 +58,7 @@ function MovieList() {
           marginBottom: "10px",
         }}
       >
-        <Typography variant="h4" color="primary" className={classes.title}>
+        <Typography variant="h4" className={classes.title}>
           Movies
         </Typography>
         <Typography>
@@ -60,12 +69,13 @@ function MovieList() {
           />
         </Typography>
       </Box>
-      <Box sx={{ flexGrow: 1 }}>
+      <div>
         <Grid
           container
-          spacing={2}
-          rowSpacing={3}
-          columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+          rowSpacing={2}
+          sx={{
+            justifyContent: "space-between",
+          }}
         >
           {movieAfterSearching().length !== 0 ? (
             <>
@@ -77,30 +87,18 @@ function MovieList() {
                     sm={6}
                     md={4}
                     lg={3}
-                    sx={{
-                      justifyContent: "center",
-                      alignContent: "center",
-                      alignItems: "center",
-                    }}
+                    sx={{ padding: "32px" }}
                   >
-                    <Box
-                      sx={{
-                        justifyContent: "center",
-                        alignContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Paper elevation={24}>
-                        <Link to={`/movie/${id}`}>
-                          <MovieCard
-                            imgSrc={src}
-                            width="250"
-                            height="350"
-                            id={id}
-                          />
-                        </Link>
-                      </Paper>
-                    </Box>
+                    <div className={classes.cardStyle}>
+                      <Link to={`/movie/${id}`}>
+                        <MovieCard
+                          imgSrc={src}
+                          width="250"
+                          height="350"
+                          id={id}
+                        />
+                      </Link>
+                    </div>
                   </Grid>
                 </React.Fragment>
               ))}
@@ -111,7 +109,7 @@ function MovieList() {
             </Typography>
           )}
         </Grid>
-      </Box>
+      </div>
     </Container>
   );
 }
