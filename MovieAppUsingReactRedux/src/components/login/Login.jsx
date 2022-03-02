@@ -43,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
   },
   login__box: {
     padding: "10px",
-    // backgroundColor: "white",
   },
   login__header: {
     textAlign: "center",
@@ -52,12 +51,15 @@ const useStyles = makeStyles((theme) => ({
   login__label: {
     marginRight: "20px",
   },
+  btnColorStyle: {
+    backgroundColor: "red",
+  },
 }));
 
 function Login() {
   const classes = useStyles();
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-  const selectedLanguage = useSelector((state) => state.info.selectLanguage);
+  const selectedLanguage = useSelector((state) => state.auth.selectLanguage);
   const dispatch = useDispatch();
   const [err, setErr] = useState(false);
 
@@ -153,9 +155,20 @@ function Login() {
                 }
               />
               <div className={classes.login__button}>
-                <CommonButton type="submit" buttonName={t("login")} fullWidth />
+                <span className={classes.btnColorStyle}>
+                  <CommonButton
+                    type="submit"
+                    buttonName={t("login")}
+                    // fullWidth
+                    color="success"
+                  />
+                </span>
                 <hr />
-                <CommonButton buttonName={t("newAccount")} color="success" />
+                <CommonButton
+                  buttonName={t("newAccount")}
+                  color="primary"
+                  // variant="error"
+                />
               </div>
               <div className={classes.validation__text}>
                 {err ? <p>Invalid Email or Password</p> : null}

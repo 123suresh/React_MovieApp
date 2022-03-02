@@ -8,13 +8,11 @@ export const theme = createTheme({
       main: "#1a237e",
     },
   },
-  components: {
-    MuiButtonBase: {
-      styleOverrides: {
-        root: {
-          fontSize: "1rem",
-          textTransform: "none",
-        },
+  overrides: {
+    MuiButton: {
+      root: {
+        fontSize: "1rem",
+        textTransform: "none",
       },
     },
   },

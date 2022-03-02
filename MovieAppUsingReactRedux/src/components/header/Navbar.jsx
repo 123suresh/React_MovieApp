@@ -7,7 +7,6 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import CommonButton from "../common/CommonButton";
 import { Link } from "react-router-dom";
-// import "./Navbar.scss";
 import { auth } from "../../action/auth";
 import { useDispatch, useSelector } from "react-redux";
 import jwt_decode from "jwt-decode";
@@ -72,7 +71,6 @@ const ResponsiveAppBar = () => {
 
   function handleLogout() {
     dispatch(auth(false));
-    // dispatch(auth());
   }
 
   const handleActiveLink = (link) => {

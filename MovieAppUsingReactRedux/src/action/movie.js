@@ -21,11 +21,6 @@ const deleteWatchList = (delWatchListId) => ({
   payload: delWatchListId,
 });
 
-const handleLanguage = (language) => ({
-  type: types.HANDLE_LANGUAGE_CHANGE,
-  payload: language,
-});
-
 export const loadMovieList = () => async (dispatch) => {
   try {
     const response = await getRequest("movieLists");
@@ -60,8 +55,4 @@ export const deleteFromWatchList = (delWatchListId) => async (dispatch) => {
   } catch (error) {
     console.log("error");
   }
-};
-
-export const handleChangeLanguage = (language) => (dispatch) => {
-  dispatch(handleLanguage(language));
 };

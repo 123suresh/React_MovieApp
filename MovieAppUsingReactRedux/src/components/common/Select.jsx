@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useDispatch, useSelector } from "react-redux";
-import { handleChangeLanguage } from "../../action/movie";
+import { handleChangeLanguage } from "../../action/auth";
 // import i18n from "../../i18n";
 
 const languages = [
@@ -25,7 +25,8 @@ const languages = [
 ];
 
 export default function SelectTextFields({ selectLabel }) {
-  const [language, setLanguage] = React.useState("english");
+  const [language, setLanguage] = React.useState("");
+  const selectedLanguage = useSelector((state) => state.auth.selectLanguage);
 
   const dispatch = useDispatch();
 
@@ -33,9 +34,13 @@ export default function SelectTextFields({ selectLabel }) {
     dispatch(handleChangeLanguage(language));
   }, [language]);
 
-  // React.useEffect(() => {
-  //   i18n.changeLanguage(language);
-  // }, [language]);
+  React.useEffect(() => {
+    setLanguage(selectedLanguage);
+  }, []);
+
+  const handleLanguageSelect = (e) => {
+    setLanguage(e.target.value);
+  };
 
   return (
     <Box
@@ -52,7 +57,7 @@ export default function SelectTextFields({ selectLabel }) {
           select
           label={selectLabel}
           value={language}
-          onChange={(e) => setLanguage(e.target.value)}
+          onChange={(e) => handleLanguageSelect(e)}
           SelectProps={{
             native: true,
           }}

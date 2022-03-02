@@ -2,6 +2,7 @@ import * as types from "../constant/actionTypes";
 const INITIAL_STATE = {
   // isAuthenticated: localStorage.getItem("token") ? "true" : "",
   isAuthenticated: "",
+  selectLanguage: "",
 };
 function Auth(state = INITIAL_STATE, action) {
   const { type, payload } = action;
