@@ -95,7 +95,7 @@ function Login() {
 
   if (isAuthenticated) return <Navigate to="/movieList" />;
   return (
-    <div>
+    <div data-test="loginContainer">
       <SelectTextFields selectLabel={t("selectLang")} />
       <div className={classes.login__main}>
         <div className={classes.login__box}>
